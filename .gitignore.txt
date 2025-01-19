@@ -1,0 +1,10 @@
+# Ignore React build artifacts
+client/node_modules
+client/build
+
+# Ignore Spring Boot build artifacts
+service/target
+
+# General ignores
+*.log
+*.env
