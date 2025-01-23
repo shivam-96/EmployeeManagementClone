@@ -21,6 +21,13 @@ const addEmployee = async (emp)=>{
         throw error; 
     }
 }
+const getEmployeeById=async(id)=>{
+  try {
+    const res = await axios.put(EMPLOYEE_LIST_API+"/",id);
+  } catch (error) {
+    console.error("no employee found", error);
+        throw error; 
+  }
+}
 
-
-export {addEmployee,getAllEmployees};
+export {addEmployee,getAllEmployees,getEmployeeById};

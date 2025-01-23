@@ -16,6 +16,8 @@ function App() {
             <Route exact path="/" element={<ListEmployeecomp />} />
             <Route path="/employees" element={<ListEmployeecomp />} />
             <Route path="/add-employee" element={<AddEmployeeComp/>} />
+            <Route path="/employees-edit/:id" element={<AddEmployeeComp/>} />
+
           </Routes>
         </div>
         <FooterComp />

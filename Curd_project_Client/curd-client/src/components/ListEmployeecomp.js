@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import {getAllEmployees} from "../services/EmployeeService";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 const ListEmployeecomp = () => {
   const [employees, setEmployees] = useState([]);
 
@@ -12,6 +13,10 @@ const ListEmployeecomp = () => {
     };
     fetchEmployees();
   }, []);
+const navigate = useNavigate(); 
+const editEmp= (id)=>{
+  navigate(`/employees-edit/${id}`);
+}
 
   return (
     <div className="container">
@@ -24,6 +29,7 @@ const ListEmployeecomp = () => {
             <th>Employee First Name</th>
             <th>Employee Last Name</th>
             <th>Employee Email Id</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -33,6 +39,9 @@ const ListEmployeecomp = () => {
               <td>{emp.firstName}</td>
               <td>{emp.lastName}</td>
               <td>{emp.emailId}</td>
+              <td>
+                <button className="btn btn-info" onClick={()=>editEmp(emp.id)} >Update</button>
+                 </td>
             </tr>
           ))}
         </tbody>
