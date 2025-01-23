@@ -1,12 +1,31 @@
 import React, { useState } from 'react';
-import { addEmployee } from "../services/EmployeeService";
-import { useNavigate } from "react-router-dom";
-
+import { addEmployee,getEmployeeById } from "../services/EmployeeService";
+import { useNavigate, useParams } from "react-router-dom";
+import { useEffect } from 'react';
 const AddEmployeeComp = () => {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [emailId, setEmailId] = useState("");
-    const navigate = useNavigate();  // Get the navigate function
+    const navigate = useNavigate(); 
+    const {Eid} = useParams();
+    
+useEffect(() => {
+    getEmployeeById(Eid).then((res)=>{
+        setFirstName(res.firstName)
+        setEmailId(res.emailId)
+        setLastName(res.lastName)
+    }).catch(error=>{
+        console.log(error)
+    });
+}, []);
+
+const title =()=>{
+    if(Eid){
+        return <h2 className='text-center'>Update Employee</h2>
+    }else{
+        return <h2 className='text-center'>Add Employee </h2>
+    }
+}
 
     const saveEmployee = async (e) => {
         e.preventDefault(); // Prevent form submission reload
@@ -29,7 +48,7 @@ const AddEmployeeComp = () => {
             <div className='container'>
                 <div className='row'>
                     <div className='card col-md-6 offset-md-3'>
-                        <h2 className='text-center'>Add employee</h2>
+                        <h2 className='text-center'>{title()}</h2>
                         <div className='card-body'>
                             <form onSubmit={saveEmployee}>
                                 <div className='form-group'>
