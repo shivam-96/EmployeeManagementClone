@@ -9,20 +9,19 @@ import UpdateEmployeeComp from './components/UpdateEmployeeComp';
 
 function App() {
   return (
-    <div>
+    <div className="d-flex flex-column min-vh-100">
       <Router>
         <HeaderComponent />
-        <div className="container">
+        <div className="container flex-grow-1">
           <Routes>
             <Route exact path="/" element={<ListEmployeecomp />} />
             <Route path="/employees" element={<ListEmployeecomp />} />
-            <Route path="/add-employee" element={<AddEmployeeComp/>} />
-            <Route path="/employees-edit" element={<UpdateEmployeeComp/>} />
-
+            <Route path="/add-employee" element={<AddEmployeeComp />} />
+            <Route path="/employees-edit" element={<UpdateEmployeeComp />} />
           </Routes>
         </div>
-        <FooterComp />
       </Router>
+      <FooterComp />
     </div>
   );
 }
