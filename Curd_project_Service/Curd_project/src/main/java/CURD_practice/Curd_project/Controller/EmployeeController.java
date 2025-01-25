@@ -29,15 +29,24 @@ public class EmployeeController {
                 .orElseThrow(()-> new ResourceNotFoundException("Employee dont exist of id " + id));
         return ResponseEntity.ok(employee);
     }
-    @PutMapping("{id}")
-    public ResponseEntity<Employee> updateEmployee (@PathVariable long id,@RequestBody Employee employee){
+    @PutMapping("/employees-edit")
+    public ResponseEntity<Employee> updateEmployee (@RequestBody Employee employee){
+        long id = employee.getId();
+
         Employee updatedEmp = employeeRepository.findById(id)
-                .orElseThrow(()-> new ResourceNotFoundException("Employee not exist with id "+id));
+                .orElseThrow(()-> new ResourceNotFoundException("Employee not exist with id "+employee.getId()));
         updatedEmp.setEmailId(employee.getEmailId());
         updatedEmp.setLastName(employee.getLastName());
         updatedEmp.setFirstName(employee.getFirstName());
+        System.out.println(updatedEmp.toString());
         employeeRepository.save(updatedEmp);
 return ResponseEntity.ok(updatedEmp);
     }
-
+    @DeleteMapping("{id}")
+    public ResponseEntity<String> deleteEmployee(@PathVariable long id) {
+        Employee employee = employeeRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Employee not found with id: " + id));
+        employeeRepository.deleteById(id);
+        return ResponseEntity.ok("Employee with ID " + id + " has been deleted successfully.");
+    }
 }

@@ -21,13 +21,31 @@ const addEmployee = async (emp)=>{
         throw error; 
     }
 }
-const getEmployeeById=async(id)=>{
+const getEmployeeById=async(Eid)=>{
   try {
-    const res = await axios.put(EMPLOYEE_LIST_API+"/",id);
+    const res = await axios.get(EMPLOYEE_LIST_API+`/${Eid}`);
   } catch (error) {
     console.error("no employee found", error);
         throw error; 
   }
 }
+const UpdateEmployee = async (employee) => {
+  try {
 
-export {addEmployee,getAllEmployees,getEmployeeById};
+    const res = await axios.put(EMPLOYEE_LIST_API+"/employees-edit",employee)
+  } catch (error) {
+    console.error("no employee found for Update", error);
+    throw error; 
+  }
+}
+const DeleteEmployee = async (id)=>{
+  try {
+    
+    const res = await axios.delete(EMPLOYEE_LIST_API+`/${id}`)
+
+  } catch (error) {
+    console.error("no employee found for deletion", error);
+  }
+}
+
+export {addEmployee,getAllEmployees,getEmployeeById,UpdateEmployee,DeleteEmployee};
