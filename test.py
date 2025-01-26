@@ -1,1 +1,1 @@
-printf("hey from EMC")
+print("hey from EMC")
