@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const EMPLOYEE_LIST_API = "http://localhost:8080/api/v1/employees";
+const EMPLOYEE_LIST_API = "http://localhost:8090/api/v1/employees";
 
 const getAllEmployees = async () => {
   try {
