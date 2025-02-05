@@ -6,6 +6,7 @@ import HeaderComponent from './components/HeaderComponent';
 import ListEmployeecomp from './components/ListEmployeecomp';
 import AddEmployeeComp from './components/AddEmployeeComp';
 import UpdateEmployeeComp from './components/UpdateEmployeeComp';
+import Dashboard from './components/Dashboard';
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
         <HeaderComponent />
         <div className="container flex-grow-1">
           <Routes>
-            <Route exact path="/" element={<ListEmployeecomp />} />
+            <Route exact path="/" element={<Dashboard />} />
             <Route path="/employees" element={<ListEmployeecomp />} />
             <Route path="/add-employee" element={<AddEmployeeComp />} />
             <Route path="/employees-edit" element={<UpdateEmployeeComp />} />
